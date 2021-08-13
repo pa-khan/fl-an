@@ -20,14 +20,83 @@
 		border: 1px solid $c-lines
 		border-radius: $radius
 	&.--xs
-		font-size: 12px
+		font-size: 14px
 		min-height: 36px
+		padding-left: 10px
+		padding-right: 10px
+		svg + span
+			margin-left: 7px
+		span + svg
+			margin-left: 7px
 	&.--sm
 		font-size: 14px
 		min-height: 40px
+		
+
 	&.--md
 		font-size: $fzMain
-		min-height: 46px
+		min-height: 58px
+		padding-left: 28px
+		padding-right: 28px
+		svg + span
+			margin-left: 10px
+		span + svg
+			margin-left: 10px
 	&.--lg
 		font-size: 20px
-		min-height: 60px
+		min-height: 180px
+		svg + span
+			margin-left: 10px
+		span + svg
+			margin-left: 10px
+	&.--icon-box
+		flex-direction: column
+		.button
+			&__icon
+				display: flex
+				align-items: center
+				justify-content: center
+				width: 44px
+				height: 44px
+				transition: $t
+				border: 1px solid transparent
+			&__title
+				color: $black
+				transition: $t
+				font-size: 12px
+				line-height: 16px
+				letter-spacing: 0.01em
+				text-transform: uppercase
+				margin-top: 8px
+				font-weight: 700
+		&.--orange
+			.button
+				&__icon
+					border-color: $teracot
+					path
+						&[fill]
+							fill: $teracot
+			&:hover
+				.button
+					&__icon
+						border-color: darken($teracot, 5%)
+						path
+							&[fill]
+								fill: darken($teracot, 5%)
+					
+	&.--bg-white
+		color: $teracot
+		background-color: #fff
+		&:hover
+			color: #fff
+			background-color: $teracot
+			path
+				&[fill]
+					fill: #fff
+	&.--bg-orange
+		color: #fff
+		background-color: $teracot
+		&:hover
+			background-color: darken($teracot, 5%)
+
+

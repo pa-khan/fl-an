@@ -6,18 +6,37 @@ html(lang="ru")
 		meta(charset="UTF-8")
 		meta(name="viewport" content="width=device-width, initial-scale=1.0")
 		title=title
+		link(rel="shortcut icon" href="uploads/favicon/favicon.ico" type="image/x-icon")
+		link(rel="apple-touch-icon" sizes="180x180" href="uploads/favicon/apple-touch-icon.png")
+		link(rel="icon" type="image/png" sizes="32x32" href="uploads/favicon/favicon-32x32.png")
+		link(rel="icon" type="image/png" sizes="16x16" href="uploads/favicon/favicon-16x16.png")
+		link(rel="apple-touch-icon" href="uploads/favicon/apple-touch-icon.png")
+		link(rel="manifest" href="uploads/favicon/site.webmanifest")
+		link(rel="mask-icon" href="uploads/favicon/safari-pinned-tab.svg" color="#5bbad5")
+		meta(name="msapplication-TileImage" content="uploads/favicon/mstile-150x150.png")
+		meta(name="msapplication-TileColor" content="#da532c")
+		meta(name="theme-color" content="#ffffff")
 	body
 		.wrap
+			link(rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css")
 			link(rel="stylesheet" href="template/css/style.css" + version)
+
 
 			+style('header', 'blocks')
 			include ../../blocks/header/header
 			+script('header', 'blocks')
 			
-			main.main
+			main.main.sections
 				block content
 
 			+style('footer', 'blocks')
 			include ../../blocks/footer/footer
 
+
+			+script('field', 'components')
+			+script('check', 'components')
+			+script('select', 'components')
+			+script('popup', 'components')
+			+script('sscroll', 'components')
+			script(src="https://unpkg.com/swiper/swiper-bundle.min.js")
 			script(src="template/js/common.js" + version)

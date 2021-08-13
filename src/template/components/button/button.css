@@ -7,7 +7,7 @@
   text-align: center;
   cursor: pointer;
   font-size: 16px;
-  font-family: "Tahoma", sans-serif;
+  font-family: "Manrope", sans-serif;
   overflow: hidden;
   border: none;
   background-color: transparent;
@@ -20,8 +20,16 @@
   border-radius: 5px;
 }
 .button.--xs {
-  font-size: 12px;
+  font-size: 14px;
   min-height: 36px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.button.--xs svg + span {
+  margin-left: 7px;
+}
+.button.--xs span + svg {
+  margin-left: 7px;
 }
 .button.--sm {
   font-size: 14px;
@@ -29,9 +37,75 @@
 }
 .button.--md {
   font-size: 16px;
-  min-height: 46px;
+  min-height: 58px;
+  padding-left: 28px;
+  padding-right: 28px;
+}
+.button.--md svg + span {
+  margin-left: 10px;
+}
+.button.--md span + svg {
+  margin-left: 10px;
 }
 .button.--lg {
   font-size: 20px;
-  min-height: 60px;
+  min-height: 180px;
+}
+.button.--lg svg + span {
+  margin-left: 10px;
+}
+.button.--lg span + svg {
+  margin-left: 10px;
+}
+.button.--icon-box {
+  flex-direction: column;
+}
+.button.--icon-box .button__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  transition: 0.3s;
+  border: 1px solid transparent;
+}
+.button.--icon-box .button__title {
+  color: #1A1A1A;
+  transition: 0.3s;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  margin-top: 8px;
+  font-weight: 700;
+}
+.button.--icon-box.--orange .button__icon {
+  border-color: #D67C32;
+}
+.button.--icon-box.--orange .button__icon path[fill] {
+  fill: #D67C32;
+}
+.button.--icon-box.--orange:hover .button__icon {
+  border-color: #c76f28;
+}
+.button.--icon-box.--orange:hover .button__icon path[fill] {
+  fill: #c76f28;
+}
+.button.--bg-white {
+  color: #D67C32;
+  background-color: #fff;
+}
+.button.--bg-white:hover {
+  color: #fff;
+  background-color: #D67C32;
+}
+.button.--bg-white:hover path[fill] {
+  fill: #fff;
+}
+.button.--bg-orange {
+  color: #fff;
+  background-color: #D67C32;
+}
+.button.--bg-orange:hover {
+  background-color: #c76f28;
 }

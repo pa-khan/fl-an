@@ -10,13 +10,14 @@ html, body {
 }
 
 body {
-  color: #000000;
+  color: #1A1A1A;
   font-size: 16px;
-  font-family: "Tahoma", sans-serif;
+  font-family: "Manrope", sans-serif;
   margin-left: auto;
   margin-right: auto;
   position: relative;
   font-weight: 400;
+  background-color: #F9F6F4;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -37,11 +38,15 @@ li {
 }
 
 a {
-  color: #000000;
+  color: #1A1A1A;
   text-decoration: none;
   outline: none;
   transition: 0.3s;
   border-bottom: 1px solid transparent;
+}
+a[href*=tel] {
+  border-bottom: none;
+  cursor: default;
 }
 
 input, textarea, button {

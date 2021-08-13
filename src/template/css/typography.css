@@ -9,3 +9,49 @@
 .tar {
   text-align: right;
 }
+
+.h1 {
+  font-size: 60px;
+  line-height: 60px;
+  font-family: "Bebas Neue", sans-serif;
+  font-weight: 700;
+}
+
+.h2 {
+  font-size: 46px;
+  line-height: 46px;
+  font-family: "Bebas Neue", sans-serif;
+  font-weight: 700;
+}
+.h2 b {
+  color: #D67C32;
+}
+
+.h3 {
+  font-size: 40px;
+  line-height: 48px;
+  font-family: "Bebas Neue", sans-serif;
+}
+.h3 b {
+  color: #D67C32;
+}
+
+.h4 {
+  font-size: 32px;
+  line-height: 44px;
+  font-family: "Bebas Neue", sans-serif;
+}
+.h4 b {
+  color: #D67C32;
+}
+
+.t1 {
+  font-size: 20px;
+  line-height: 28px;
+}
+.t1 p {
+  margin-bottom: 20px;
+}
+.t1 p:last-child {
+  margin-bottom: 0;
+}

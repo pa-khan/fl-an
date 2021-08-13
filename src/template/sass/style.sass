@@ -3,6 +3,7 @@
 @import reset
 @import grid
 
+@import ../components/sscroll/sscroll
 @import ../components/button/button
 @import ../components/field/field
 @import ../components/check/check
@@ -15,5 +16,595 @@
 
 @import typography
 
-.overflow-disable
+
+.bgw
+	z-index: 1
+	position: relative
+
+.bg
+	z-index: -10
+	position: absolute
+	top: 0
+	left: 0
+	right: 0
+	bottom: 0
+	img
+		width: 100%
+		height: 100%
+		object-fit: cover
+
+.img
+	img
+		width: 100%
+		height: 100%
+		object-fit: cover
+
+.header
+	&__left
+		display: flex
+		flex-direction: column
+		z-index: 100
+		position: fixed
+		width: 295px
+		top: 0
+		left: 0
+		bottom: 0
+		padding-top: 64px
+		border-right: 1px solid rgba(184, 184, 184, 0.2)
+	&__phone
+		margin-top: auto
+	&__phone
+		text-align: center
+		padding-left: 10px
+		padding-right: 10px
+		font-size: 20px
+		line-height: 27px
+		margin-bottom: 64px
+		
+	&__right
+		z-index: 100
+		position: fixed
+		display: flex
+		flex-direction: column
+		align-items: center
+		top: 0
+		right: 0
+		bottom: 0
+		width: 146px
+		padding-top: 64px
+		padding-bottom: 80px
+		border-left: 1px solid rgba(184, 184, 184, 0.2)
+
+	&__deadline
+		text-align: center
+		font-size: 14px
+		line-height: 19px
+		letter-spacing: 0.02em
+		font-weight: 600
+		text-transform: uppercase
+		margin-bottom: auto
+
+	&__messengers
+		margin-top: auto
+
+	&__camera
+		margin-top: 50px
+
+
+
+	&.--light
+		.header
+			&__left, &__right
+				border-color: rgba(255, 255, 255, 0.2)
+			&__phone
+				a
+					color: #fff
+			&__deadline
+				color: #fff
+		.nav
+			&__item
+				color: #fff
+				&:hover
+					color: $teracot
+		.button
+			&.--icon-box
+				&.--orange
+					.button
+						&__icon
+							border-color: #fff
+							path
+								&[fill]
+									fill: #fff
+						&__title
+							color: #fff
+					&:hover
+						.button
+							&__icon
+								border-color: darken($teracot, 5%)
+								path
+									&[fill]
+										fill: darken($teracot, 5%)
+								
+						
+
+.nav
+	padding: 0 15px 40px 20px
+	&__item
+		display: flex
+		align-items: center
+		margin-bottom: 24px
+		border-bottom: none
+		transform: translateX(-37px)
+		&:last-of-type
+			margin-bottom: 0
+		&.--current
+			transform: translateX(0px)
+			.nav
+				&__icon
+					display: block
+					opacity: 1
+				&__name
+					color: $teracot
+		&:hover
+			color: $teracot
+	&__icon
+		// display: none
+		min-width: 21px
+		transition: $t
+		opacity: 0
+	&__name
+		padding-left: 16px
+		transition: $t
+
+
+.messengers
+	&__item
+		margin-bottom: 12px
+		&:last-of-type
+			margin-bottom: 0
+
+.section
+	&__inner
+		padding-left: 136px
+	.case
+		display: flex
+		flex-wrap: wrap
+		align-items: center
+		justify-content: flex-start
+		height: 100%
+	&__wrap
+		position: relative
+		width: 100%
+	
+.c-white
+	color: #fff
+
+.c-orange
+	color: $teracot
+
+.bg-brown
+	background-color: #3C2F2B
+
+.intro
+	.section
+		&__inner
+			padding-top: 64px
+	&__content
+		padding-bottom: 280px
+	&__top
+		position: absolute
+		top: 15px
+		left: 15px
+		right: 0
+		justify-content: space-between
+		&-text
+			font-size: 16px
+			line-height: 22px
+			font-weight: 600
+			&:nth-of-type(2)
+				margin-right: 25px
+
+	&__title
+		margin-bottom: 20px
+
+	&__controls
+		align-items: center
+		position: absolute
+		bottom: 84px
+		left: 15px
+		right: 15px
+		padding-right: 15px
+
+	&__video
+		margin-left: auto
+
+	&__shadow
+		z-index: -1
+		position: absolute
+		&.--top
+			top: 0
+			left: 0
+			right: 0
+			height: 206px
+			background: linear-gradient(180deg, rgba(26, 26, 26, 0.53) 6.72%, rgba(26, 26, 26, 0) 95.86%)
+		&.--left
+			left: 0
+			top: 0
+			bottom: 0
+			width: 50%
+			background: linear-gradient(90deg, rgba(26, 26, 26, 0.77) 1.81%, rgba(26, 26, 26, 0.4) 62.72%, rgba(26, 26, 26, 0) 99.18%)
+		&.--right
+			right: 0
+			top: 0
+			bottom: 0
+			width: 146px
+			background: linear-gradient(-90deg, rgba(26, 26, 26, 0.22) 1.87%, rgba(26, 26, 26, 0) 117.07%)
+		&.--bottom
+			top: 0
+			left: 0
+			right: 0
+			bottom: 0
+			opacity: 0.07
+			background-color: $black
+
+
+.down
+	display: flex
+	cursor: pointer
+	&__title
+		font-size: 12px
+		line-height: 16px
+		font-weight: 600
+		letter-spacing: 0.1em
+		text-transform: uppercase
+	&__icon
+		margin-left: 18px
+
+
+.video-btn
+	z-index: 1
+	position: relative
+	&__title
+		position: absolute
+		font-size: 12px
+		line-height: 16px
+		font-weight: 700
+		letter-spacing: 0.01em
+		text-transform: uppercase
+		top: 0
+		left: -100%
+		margin-left: -24px
+	&__wrap
+		display: flex
+		align-items: center
+		justify-content: center
+		width: 97px
+		height: 97px
+		border-radius: 50%
+		transition: $t
+		background-color: $teracot
+		cursor: pointer
+		&:hover
+			background-color: darken($teracot, 5%)
+	&__box
+		svg
+			margin-left: 4px
+	&__round
+		opacity: 0
+		z-index: -1
+		position: absolute
+		top: 0
+		left: 0
+		right: 0
+		bottom: 0
+		border-radius: 50%
+		border: 1px solid $teracot
+		&:nth-of-type(1)
+			animation: roundBounce 3s ease-in-out 0s infinite
+		&:nth-of-type(2)
+			animation: roundBounce 3s ease-in-out 1s infinite
+		&:nth-of-type(3)
+			animation: roundBounce 3s ease-in-out 2s infinite
+
+@keyframes roundBounce
+	0%
+		opacity: 0
+
+	50%
+		opacity: 0.25
+
+	100%
+		opacity: 0
+		top: -32px
+		left: -32px
+		right: -32px
+		bottom: -32px
+
+
+
+.about
+	z-index: 1
+	position: relative
+	.case
+		padding-top: 132px
+		padding-bottom: 132px
+	&__title
+		padding-left: 62px
+		margin-bottom: 64px
+	&__lines
+		z-index: -1
+		position: absolute
+		top: -325px
+		left: 50%
+		margin-left: -86px
+		transform: translateX(-50%)
+	&__counts
+		margin-top: 95px
+	&__desc
+		margin-top: 84px
+
+
+.block
+	&__img-wrap
+		width: 710px
+		padding-top: 7px
+	&__img
+		min-height: 778px
+	&__content
+		width: calc(100% - 710px)
+		padding-left: 60px
+	&__text
+		margin-bottom: 55px
+		&:last-child
+			margin-bottom: 0
+
+	
+		
+.icons
+	&__list
+		grid: none / repeat(2, 1fr)
+		gap: 44px
+	&__icon
+		display: flex
+		align-items: center
+		height: 48px
+		margin-bottom: 12px
+	&__text
+		font-size: 16px
+		line-height: 24px
+
+
+.counts
+	&__title
+		margin-bottom: 55px
+	&__list
+		margin-left: -15px
+		margin-right: -15px
+		justify-content: center
+	&__item
+		padding-left: 15px
+		padding-right: 15px
+		text-align: center
+		min-width: 306px
+	&__count
+		font-size: 120px
+		line-height: 144px
+		font-family: $bebas
+		&:after
+			display: block
+			content: ''
+			width: 67px
+			height: 1px
+			margin-top: 5px
+			margin-left: auto
+			margin-right: auto
+		&.c-orange
+			&:after
+				background-color: $teracot
+	&__name
+		margin-top: 24px
+		font-size: 20px
+		line-height: 28px
+
+
+.a-desc
+	&__content
+		width: calc(100% - 524px)
+		padding-left: 220px
+		padding-right: 135px
+	&__text
+		p
+			margin-bottom: 16px
+
+	&__button
+		display: inline-flex
+		margin-top: 56px
+	&__img-wrap
+		width: 524px
+	&__img
+		min-height: 349px 
+		
+
+.structure
+	.section__inner
+		padding-top: 132px
+		padding-bottom: 100px
+	&__title
+		margin-bottom: 70px
+
+	&__catalog
+		margin-top: 95px
+
+
+.tb
+	width: 100%
+	&__text
+		width: 660px
+		padding-left: 110px
+		padding-right: 135px
+	&__block
+		width: calc(100% - 660px)
+		padding-top: 7px
+	&__map
+		border: 1px solid #929292
+		height: 660px
+
+
+.location
+	position: relative
 	overflow: hidden
+	&__map
+		z-index: 1
+		position: absolute
+		top: 0
+		left: 0
+		right: 0
+		bottom: 0
+	&__filter
+		z-index: 2
+		position: absolute
+		width: 236px
+		top: 0
+		left: 0
+		bottom: 0
+		transition: $t
+		transform: translateX(-100%)
+		&.--show
+			transform: translateX(0%)
+	&__toggle
+		// display: none
+		z-index: 3
+		position: absolute
+		bottom: 32px
+		left: 32px
+		border-radius: 50px
+		borer: 1px solid #fff
+		.button
+			&__icon
+				width: 18px
+				display: flex
+				align-items: center
+				justify-content: center
+				margin-right: 7px
+				position: relative
+				svg
+					transition: $t
+					&:nth-of-type(2)
+						opacity: 0
+						position: absolute
+						top: 50%
+						left: 50%
+						transform: translate(-50%, -50%)
+			&__text
+				position: relative
+				top: -1px
+		&.--show
+			border: 1px solid $teracot
+			.button
+				&__icon
+					svg
+						&:nth-of-type(1)
+							opacity: 0
+						&:nth-of-type(2)
+							opacity: 1
+
+		
+
+.filter
+	// display: none
+	background-color: #fff
+	padding-top: 75px
+	&__item
+		display: flex
+		align-items: center
+		padding-left: 20px
+		padding-right: 20px
+		margin-bottom: 5px
+		cursor: pointer
+		.icon-round
+			opacity: 0
+			// fill: #fff
+		&:last-of-type
+			margin-bottom: 0
+		&.--selected
+			.filter
+				&__icon
+					path, circle
+						&[fill]
+							fill: $teracot
+						&[stroke]
+							stroke: $teracot
+					
+				&__name
+					color: $teracot
+					
+
+	&__icon
+		display: flex
+		align-items: center
+		justify-content: center
+		min-width: 40px
+		path, circle
+			&[fill]
+				fill: #929292
+			&[stroke]
+				stroke: #929292
+			
+	&__name
+		padding-left: 10px
+		line-height: 24px
+		transition: $t
+
+
+.arrow
+	width: 60px
+	height: 60px
+	background-color: #fff
+	&.--hidden
+		opacity: 0
+	&:hover
+		background-color: $teracot
+		path
+			&[fill]
+				fill: #fff
+
+.catalog
+	width: 100%
+	&__title
+		margin-bottom: 54px
+	&__inner
+		position: relative
+		max-width: 1296px
+	&__item
+		&.--has-popup
+			cursor: pointer
+		
+	&__img
+		height: 540px
+
+	&__name
+		margin-top: 24px
+
+	&__nav
+		&-item
+			position: absolute
+			top: 240px
+			&.--prev
+				left: 24px
+			&.--next
+				right: 24px
+
+	&__popup
+		display: none
+		
+
+// .improvement
+
+.improvement
+	.section__inner
+		padding-top: 132px
+		padding-bottom: 100px
+	&__title
+		margin-bottom: 70px
+	&__catalog
+		margin-top: 95px

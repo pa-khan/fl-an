@@ -79,6 +79,8 @@ class Popup {
   }
 
   static show(element) {
+  	Popup.element = element;
+  	Popup.element.classList.add(Popup.classItem);
     this.block.classList.add(Popup.classShow);
     document.body.classList.add(Popup.classBodyShow);
     this.list.prepend(element);

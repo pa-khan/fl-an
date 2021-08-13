@@ -20,7 +20,7 @@
   opacity: 0;
   border-radius: 3px;
   transform: scale(0);
-  background-color: #000000;
+  background-color: #1A1A1A;
 }
 .check.--block {
   display: flex;

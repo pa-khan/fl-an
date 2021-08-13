@@ -1,5 +1,33 @@
 include ../../pug/vars
 
-footer.footer
-	.case
-		
+.modals
+	.modal.--xs#modal-order
+		.modal__close
+		.modal__title
+		.modal__text
+		.modal__form
+			.modal__field.filed.--md.--bg-white
+				.filed__wrap
+					input.filed__area(type="" name="")
+			.modal__field.filed.--md.--bg-white
+				.filed__wrap
+					input.filed__area(type="" name="")
+			button.modal__button.button.--md.--bg-orange
+		.modal__policy #[a(href="")]
+
+	.modal.--xs.thanks#modal-thanks
+		.thanks__title
+		.thanks__text
+
+	.modal.--lg.object#modal-object
+		.object__imgs.imgs
+			.imgs__wrap
+				.imgs__list
+					.imgs__item
+						img(src="" alt="")
+			.imgs__nav-item.button.arrows.--prev
+			.imgs__nav-item.button.arrows.--next
+		.object__content
+			.object__title.h3
+			.object__text.t1
+			.object__button.button.--md.--bg-orange(href="" data-popup="") оставить заявку
