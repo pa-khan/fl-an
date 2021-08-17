@@ -908,6 +908,10 @@
     min-width: 60%;
     width: 60%;
   }
+
+  .video {
+    height: 600px;
+  }
 }
 @media screen and (max-width: 950px) {
   .object {
@@ -916,6 +920,10 @@
   .object__imgs {
     min-width: 100%;
     width: 100%;
+  }
+
+  .video {
+    height: 500px;
   }
 }
 @media screen and (max-width: 767px) {
@@ -1479,5 +1487,9 @@
   .thanks__text {
     font-size: 14px;
     line-height: 20px;
+  }
+
+  .video {
+    height: 350px;
   }
 }
