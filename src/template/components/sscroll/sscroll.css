@@ -3,7 +3,6 @@ html.sscroll-overflow-disable, body.sscroll-overflow-disable {
 }
 
 .sscroll__section-inner {
-  position: relative;
   display: flex;
   flex-wrap: wrap;
   align-items: center;

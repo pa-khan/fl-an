@@ -1,0 +1,41 @@
+@import ../../sass/vars
+
+.tabs
+	&__navs
+		.tabs
+			&__nav
+				height: 0
+				opacity: 0
+				visibility: hidden
+				// transition: opacity $t
+				&.--current
+					opacity: 1
+					height: auto
+					visibility: visible
+	&__nav
+		margin-left: -16px
+		margin-right: -16px
+		&.--white
+			.tabs
+				&__nav-item
+					color: #fff
+					&.--current, &:hover
+						color: $teracot
+		&-title
+			display: none
+		&-item
+			font-size: 20px
+			line-height: 28px
+			margin-left: 16px
+			margin-right: 16px
+	&__item
+		height: 0
+		overflow: hidden
+		transition: opacity 1s
+		opacity: 0
+		visibility: hidden
+		&.--current
+			height: auto
+			opacity: 1
+			visibility: visible
+			overflow: visible

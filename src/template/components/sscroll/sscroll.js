@@ -7,6 +7,7 @@ class Sscroll {
 		wrap: '.sections',
 		section: '.section',
 		nav: '.nav',
+		navLinks: '.scrollTo',
 		attrBody: 'data-header-class',
 		class: {
 			wrap: 'sscroll',
@@ -18,7 +19,9 @@ class Sscroll {
 	}) {
 		this.settings  = settings;
 		this.wrap      = document.querySelector(this.settings.wrap);
+		this.navLinks  = document.querySelectorAll(this.settings.navLinks);
 		this.prevScrollTop = 0;
+		this.timeStamp = 0;
 
 		if (this.wrap) {
 			this.wrap.classList.add(this.settings.class.wrap);
@@ -49,6 +52,7 @@ class Sscroll {
 		});
 		window.addEventListener('resize', ()=>{
 			this.changeHeight();
+			this.setScrollSectionDefault();
 		});
 
 		this.currentSection = this.checkCurrentSection() ? this.checkCurrentSection() : this.sections[0];
@@ -61,6 +65,35 @@ class Sscroll {
 			if (this.nav.current) {
 				this.nav.current.classList.add(Sscroll.classCurrent);
 			}	
+		}
+
+		if (this.navLinks) {
+			this.navLinks.forEach((link)=>{
+				link.attrHref = link.getAttribute('href');
+				link.el   = document.querySelector(link.attrHref);
+
+				if (!link.el) {
+					return false;
+				}
+
+				link.addEventListener('click', (event)=>{
+					event.preventDefault();
+
+					if (!event.target.closest(Sscroll.classCurrent)) {
+						this.moveSection(link.el);
+
+						link.classList.add(Sscroll.classCurrent);
+						this.navLinks.forEach((l)=>{
+							if (link == l) {
+								return false;
+							}
+
+							l.classList.remove(Sscroll.classCurrent);
+						});
+					}
+				})
+				
+			});
 		}
 
 		this.wrappingSection();
@@ -80,33 +113,76 @@ class Sscroll {
 
 	}
 
-	wheelOnSection() {
-		document.addEventListener('wheel', (event)=> {
-			event.preventDefault();
 
-			let section = event.target.closest('.' + this.settings.class.sectionInner);
-			
-			if (!section) {
+	eventMove(event, skip) {
+
+		if (event.type == 'touchmove') {
+			if (event.target.closest('.noUi-target') || event.target.closest('.tabs__nav')) {
 				return false;
 			}
+			if ((event.target.closest('.swiper-container')) && (this.moveStartX > this.moveEndX + 10 || this.moveStartX < this.moveEndX - 10)) {
+				return false;
+			}
+		}
+		if (event.target.closest('.wheel-false')) {
+			return false;
+		}
 
-			let scrollPosition = section.scrollTop + window.pageYOffset;
-			if (section.clientHeight < section.scrollHeight) {
-				if (scrollPosition >= section.scrollHeight) {
-					if (scrollPosition != this.prevScrollTop) {
-						this.prevScrollTop = scrollPosition;
-						return false;
-					} else {
-						this.moveNext();	
-					}
-					
-				} else if (section.scrollTop == 0) {
+		if (event.ctrlKey) {
+			return false;
+		}
+		
+		if (event.timeStamp - 500 < this.timeStamp) {
+			this.timeStamp = event.timeStamp;
+			return false;
+		} else {
+			this.timeStamp = event.timeStamp;
+		}
+
+		let section = event.target.closest('.' + this.settings.class.sectionInner);
+		
+		if (!section) {
+			return false;
+		}
+
+
+		let scrollPosition = Math.ceil(section.scrollTop + section.offsetHeight);
+
+
+		if (section.clientHeight < section.scrollHeight) {
+			console.log(scrollPosition, section.scrollHeight);
+			if (!skip) {
+				if (section.scrollTop == 0) {
 					if (scrollPosition != this.prevScrollTop) {
 						this.prevScrollTop = scrollPosition;
 						return false;
 					} else {
 						this.movePrev();	
 					}
+				} else if (scrollPosition == section.scrollHeight) {
+					if (scrollPosition != this.prevScrollTop) {
+						this.prevScrollTop = scrollPosition;
+						return false;
+					} else {
+						this.moveNext();	
+					}
+				}
+			} else {
+				if (section.scrollTop == 0) {
+					this.movePrev();	
+				} else if (scrollPosition == section.scrollHeight) {
+					this.moveNext();
+				}
+			}
+			
+				
+			
+		} else {
+			if (event.type == 'touchmove') {
+				if (this.moveStartY < this.moveEndY) {
+					this.movePrev();	
+				} else {
+					this.moveNext();
 				}
 			} else {
 				if (event.deltaY > 0) {
@@ -114,19 +190,42 @@ class Sscroll {
 				} else {
 					this.movePrev();
 				}
+				this.prevScrollTop = scrollPosition;
 			}
+			
+			
+		}
 
-			// console.log(event.target.closest('.' + this.settings.class.sectionInner).clientHeight);
-			// console.log(event.target.closest('.' + this.settings.class.sectionInner).scrollHeight);
+		this.setNavItemCurrent();
+	}
+	wheelOnSection() {
+		document.addEventListener('wheel', (event)=> {
+			event.preventDefault();
 
+			this.event = 'wheel';
 
-			let id = this.currentSection.id;
-			setTimeout(()=>{
-				// this.addHash(id);
-			}, 500);
-
-			this.setNavItemCurrent();
+			this.eventMove(event);
 		});
+
+		document.addEventListener('touchstart', (event)=> {
+			event.preventDefault();
+
+			this.event = 'touch';
+
+			this.moveStartY = event.touches[0].pageY;
+			this.moveStartX = event.touches[0].pageX;
+		});
+
+		document.addEventListener('touchmove', (event)=> {
+			event.preventDefault();
+
+			this.moveEndY = event.touches[0].pageY;
+			this.moveEndX = event.touches[0].pageX;
+
+			this.eventMove(event);
+		});
+
+		
 	}
 
 	scrollToSection(section) {
@@ -136,10 +235,14 @@ class Sscroll {
 		})
 	}
 
-	addHash(id) {
-		window.location.hash = id;
+	addHash(delay) {
+		if (this.currentSection.id) {
+			setTimeout(()=>{
+				window.location.hash = this.currentSection.id;
+			}, delay);
+		}
+		
 	}
-
 	changeHeight() {
 		this.sections.forEach((section)=>{
 			if (section.classList.contains(Sscroll.classHeightAuto)) {
@@ -159,13 +262,17 @@ class Sscroll {
 	}
 
 	moveSection(direction) {
+		// this.movePosition = null;
 		let position = null;
 
 		if (direction  == 'next') {
 			position = this.currentSection.nextSibling;
 		} else if (direction == 'prev') {
 			position = this.currentSection.previousSibling;
+		}  else if (typeof direction == 'object') {
+			position = direction;
 		}
+
 
 		if (position) {
 			this.removeCurrent(this.currentSection);
@@ -173,7 +280,12 @@ class Sscroll {
 			this.currentSection = position;
 			this.addCurrent(this.currentSection);
 			this.setHeaderClasses();
-			this.scrollToSection(this.currentSection);
+			if (this.event == 'wheel') {
+				this.scrollToSection(this.currentSection);
+				this.addHash(500);
+			} else {
+				this.addHash(0);
+			}
 		}
 	}
 	moveNext() {
@@ -196,15 +308,23 @@ class Sscroll {
 	}
 	setHeaderClasses() {
 		let sectionHeaderClasses = this.currentSection.getAttribute(this.settings.attrBody);
+		
 		if (sectionHeaderClasses) {
-			document.querySelector('.header').classList.add(sectionHeaderClasses);
+			sectionHeaderClasses = sectionHeaderClasses.split(' ');
+			sectionHeaderClasses.forEach((sectionHeaderClass)=>{
+				document.querySelector('.header').classList.add(sectionHeaderClass);
+			});
 		}
 	}
 
 	removeHeaderClasses() {
 		let sectionHeaderClasses = this.currentSection.getAttribute(this.settings.attrBody);
+		
 		if (sectionHeaderClasses) {
-			document.querySelector('.header').classList.remove(sectionHeaderClasses);
+			sectionHeaderClasses = sectionHeaderClasses.split(' ');
+			sectionHeaderClasses.forEach((sectionHeaderClass)=>{
+				document.querySelector('.header').classList.remove(sectionHeaderClass);
+			});
 		}
 	}
 	wrappingSection() {
@@ -220,4 +340,7 @@ class Sscroll {
 		});
 	}
 	
+	setScrollSectionDefault() {
+		html.scrollTop = body.scrollTop = this.currentSection.offsetTop;
+	}
 }

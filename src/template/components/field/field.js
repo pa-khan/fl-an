@@ -25,6 +25,12 @@ class Field {
     this.movePlaceholder();
     this.onFocus();
     this.onInput();
+
+    if (this.element.classList.contains('--phone')) {
+			new IMask(this.element.area, {
+				mask: '+{7} (000) 000-00-00'
+			});	
+		}
   }
 
   addClassTag() {

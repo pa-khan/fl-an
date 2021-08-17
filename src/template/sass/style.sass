@@ -9,14 +9,15 @@
 @import ../components/check/check
 @import ../components/select/select
 @import ../components/popup/popup
-// @import ../components/tabs/tabs
+@import ../components/tabs/tabs
 // @import ../components/popup/popup
 // @import ../components/slider/slider
 // @import ../components/tog/tog
 
 @import typography
 
-
+html body .pb-widget-button
+	display: none !important
 .bgw
 	z-index: 1
 	position: relative
@@ -34,12 +35,16 @@
 		object-fit: cover
 
 .img
+	overflow: hidden
 	img
 		width: 100%
 		height: 100%
 		object-fit: cover
+		transition: $t
 
 .header
+	.hidden
+		display: none
 	&__left
 		display: flex
 		flex-direction: column
@@ -51,29 +56,34 @@
 		bottom: 0
 		padding-top: 64px
 		border-right: 1px solid rgba(184, 184, 184, 0.2)
+	&__nav-btns
+		display: none
 	&__phone
 		margin-top: auto
-	&__phone
 		text-align: center
 		padding-left: 10px
 		padding-right: 10px
 		font-size: 20px
 		line-height: 27px
+		font-weight: 600
 		margin-bottom: 64px
 		
 	&__right
 		z-index: 100
 		position: fixed
-		display: flex
-		flex-direction: column
-		align-items: center
 		top: 0
 		right: 0
 		bottom: 0
 		width: 146px
-		padding-top: 64px
-		padding-bottom: 80px
 		border-left: 1px solid rgba(184, 184, 184, 0.2)
+		&-wrap
+			display: flex
+			flex-direction: column
+			align-items: center
+			width: 100%
+			height: 100%
+			padding-top: 64px
+			padding-bottom: 80px
 
 	&__deadline
 		text-align: center
@@ -89,8 +99,6 @@
 
 	&__camera
 		margin-top: 50px
-
-
 
 	&.--light
 		.header
@@ -120,12 +128,13 @@
 					&:hover
 						.button
 							&__icon
-								border-color: darken($teracot, 5%)
+								border-color: $teracot
+								background-color: $teracot
 								path
 									&[fill]
-										fill: darken($teracot, 5%)
+										fill: #fff
 								
-						
+
 
 .nav
 	padding: 0 15px 40px 20px
@@ -162,10 +171,17 @@
 		margin-bottom: 12px
 		&:last-of-type
 			margin-bottom: 0
+		&.--hidden
+			display: none
 
 .section
+	overflow: hidden
+	min-height: 100vh
+	&.--h-auto
+		min-height: 1px
 	&__inner
-		padding-left: 136px
+		padding-left: 125px
+		overflow-x: hidden
 	.case
 		display: flex
 		flex-wrap: wrap
@@ -183,17 +199,17 @@
 	color: $teracot
 
 .bg-brown
-	background-color: #3C2F2B
+	// background-color: #3C2F2B
+	background: #312621
 
 .intro
-	.section
-		&__inner
-			padding-top: 64px
+	.case
+		padding-top: 64px
 	&__content
 		padding-bottom: 280px
 	&__top
 		position: absolute
-		top: 15px
+		top: 64px
 		left: 15px
 		right: 0
 		justify-content: space-between
@@ -206,6 +222,10 @@
 
 	&__title
 		margin-bottom: 20px
+
+	&__text
+		font-size: 20px
+		line-height: 28px
 
 	&__controls
 		align-items: center
@@ -248,9 +268,17 @@
 			background-color: $black
 
 
+@keyframes arrowBounce
+	0%
+		bottom: 0
+	50%
+		bottom: -15px
+	100%
+		bottom: 0
+
 .down
 	display: flex
-	cursor: pointer
+	// cursor: pointer
 	&__title
 		font-size: 12px
 		line-height: 16px
@@ -259,6 +287,10 @@
 		text-transform: uppercase
 	&__icon
 		margin-left: 18px
+		position: relative
+		bottom: 0
+		transition: $t
+		animation: arrowBounce 3s ease-in-out infinite
 
 
 .video-btn
@@ -273,6 +305,7 @@
 		text-transform: uppercase
 		top: 0
 		left: -100%
+		color: #fff
 		margin-left: -24px
 	&__wrap
 		display: flex
@@ -325,7 +358,7 @@
 .about
 	z-index: 1
 	position: relative
-	.case
+	&__inner
 		padding-top: 132px
 		padding-bottom: 132px
 	&__title
@@ -334,9 +367,9 @@
 	&__lines
 		z-index: -1
 		position: absolute
-		top: -325px
+		top: -185px
 		left: 50%
-		margin-left: -86px
+		margin-left: -10px
 		transform: translateX(-50%)
 	&__counts
 		margin-top: 95px
@@ -346,12 +379,12 @@
 
 .block
 	&__img-wrap
-		width: 710px
+		width: 54%
 		padding-top: 7px
 	&__img
-		min-height: 778px
+		height: 778px
 	&__content
-		width: calc(100% - 710px)
+		width: 46%
 		padding-left: 60px
 	&__text
 		margin-bottom: 55px
@@ -378,12 +411,12 @@
 	&__title
 		margin-bottom: 55px
 	&__list
-		margin-left: -15px
-		margin-right: -15px
+		margin-left: -35px
+		margin-right: -35px
 		justify-content: center
 	&__item
-		padding-left: 15px
-		padding-right: 15px
+		padding-left: 35px
+		padding-right: 35px
 		text-align: center
 		min-width: 306px
 	&__count
@@ -398,9 +431,7 @@
 			margin-top: 5px
 			margin-left: auto
 			margin-right: auto
-		&.c-orange
-			&:after
-				background-color: $teracot
+			background-color: $teracot
 	&__name
 		margin-top: 24px
 		font-size: 20px
@@ -422,11 +453,11 @@
 	&__img-wrap
 		width: 524px
 	&__img
-		min-height: 349px 
+		height: 349px 
 		
 
 .structure
-	.section__inner
+	&__inner
 		padding-top: 132px
 		padding-bottom: 100px
 	&__title
@@ -448,6 +479,15 @@
 	&__map
 		border: 1px solid #929292
 		height: 660px
+	&__img
+		display: flex
+		align-items: center
+		justify-content: center
+		height: 660px
+		border: 1px solid #929292
+		background-color: #fff
+		&.--b-none
+			border: none
 
 
 .location
@@ -572,6 +612,23 @@
 	width: 100%
 	&__title
 		margin-bottom: 54px
+		&.--mb0
+			margin-bottom: 0
+
+	&__nav
+		display: flex
+		flex-wrap: wrap
+		margin-bottom: 32px
+		&.--mb-more
+			margin-bottom: 54px
+	&__select
+		margin-right: 64px
+	&__tabs-nav
+		margin-right: 40px
+	&__more
+		margin-left: auto
+		
+		
 	&__inner
 		position: relative
 		max-width: 1296px
@@ -581,11 +638,30 @@
 		
 	&__img
 		height: 540px
+		&.--bg
+			display: flex
+			align-items: center
+			justify-content: center
+			background-color: #fff
+			padding: 24px
+			img
+				// width: 100%
+				height: auto
+				object-fit: fill
+		&.--border
+			border: 1px solid #929292
 
 	&__name
 		margin-top: 24px
 
-	&__nav
+	&__desc
+		margin-top: 4px
+		line-height: 24px
+
+	&__price
+		margin-top: 12px
+
+	&__controls
 		&-item
 			position: absolute
 			top: 240px
@@ -598,13 +674,482 @@
 		display: none
 		
 
-// .improvement
+.btn-more
+	display: flex
+	align-items: center
+	border-bottom: none
+	span
+		color: $teracot
+		font-size: 14px
+		line-height: 19px
+		font-weight: 600
+		letter-spacing: 0.02em
+		text-transform: uppercase
+		margin-right: 10px
+	svg
+		position: relative
+		transition: $t
+		left: 0
+		&[fill]
+			fill: $teracot
+	&:hover
+		svg
+			left: 5px
+		&[fill]
+			fill: darken($teracot, 5%)
+
+
 
 .improvement
-	.section__inner
+	&__inner
 		padding-top: 132px
 		padding-bottom: 100px
 	&__title
 		margin-bottom: 70px
 	&__catalog
 		margin-top: 95px
+
+
+
+
+.object
+	&__imgs
+		min-width: 770px
+		width: 770px
+	&__content
+		width: 100%
+		padding: 64px
+	&__title
+		margin-bottom: 16px
+	&__button
+		display: inline-flex
+		margin-top: 53px
+
+
+
+
+.imgs
+	position: relative
+	&__inner, &__wrap
+		height: 100%
+	&__item
+		height: auto
+		.c-popup__imgs-item
+			display: flex
+			align-items: center
+			justify-content: center
+			width: 100%
+			height: 100%
+	&__nav
+		&-item
+			position: absolute
+			top: 50%
+			transform: translateY(-50%)
+			&.--prev
+				left: 32px
+			&.--next
+				right: 32px
+
+
+
+.gallery
+	z-index: 1
+	position: relative
+	.case
+		height: auto
+	&__inner
+		padding-top: 132px
+		padding-bottom: 100px
+	&__title
+		margin-bottom: 64px
+	&__nav
+		margin-bottom: 32px
+		margin-left: -16px
+		margin-right: -16px
+		a
+			color: #fff
+			margin-left: 16px
+			margin-right: 16px
+			&.--current, &:hover
+				color: $teracot
+
+	&__slider
+		position: relative
+		max-width: 1296px
+
+	&__item
+		height: 716px
+		h6
+			display: block
+			z-index: 1
+			position: absolute
+			padding: 6px 10px
+			right: 32px
+			bottom: 32px
+			line-height: 24px
+			color: $black
+			background-color: #fff
+	&__nav
+		&-item
+			position: absolute
+			top: 50%
+			transform: translateY(-50%)
+			&.--prev
+				left: 24px
+			&.--next
+				right: 24px
+	&__dots
+		display: none
+	&__bg
+		z-index: -1
+		position: absolute
+		top: -195px
+		left: 50%
+		margin-left: 75px
+		transform: translateX(-50%)
+
+
+.plan
+	z-index: 1
+	position: relative
+	.case
+		height: auto
+	&__inner
+		padding-top: 132px
+		padding-bottom: 100px
+		overflow-x: hidden
+	&__title
+		margin-bottom: 64px
+	&__bg
+		z-index: -1
+		position: absolute
+		top: -654px
+		left: 50%
+		margin-left: -160px
+		transform: translateX(-50%)
+		
+
+.parking
+	&__inner
+		width: 100%
+		padding-top: 132px
+		padding-bottom: 100px
+	&__title
+		margin-bottom: 65px
+	&__catalog
+		margin-top: 95px
+
+
+.business
+	&__inner
+		width: 100%
+		padding-top: 132px
+		padding-bottom: 100px
+	&__title
+		margin-bottom: 65px
+	&__counts
+		margin-top: 95px
+		.counts__count
+			color: #3C2F2B
+
+	&__catalog
+		margin-top: 95px
+
+
+.mortgage
+	z-index: 1
+	position: relative
+	&__inner
+		width: 100%
+		padding-top: 132px
+		padding-bottom: 100px
+	&__partners
+		margin-top: 95px
+	&__bg
+		z-index: -1
+		position: absolute
+		top: -145px
+		left: 50%
+		margin-left: -85px
+		transform: translateX(-50%)
+
+.calc
+	&__title
+		margin-bottom: 65px
+	&__wrap
+		padding: 64px
+		background-color: #624C3B
+
+	&__list
+		width: 50%
+		padding-right: 132px
+
+	&__item
+		margin-bottom: 43px
+		&:last-of-type
+			margin-bottom: 0
+
+	&__content
+		display: flex
+		flex-direction: column
+		width: 50%
+		padding-top: 28px
+
+	&__data
+		margin-bottom: 50px
+
+	&__button
+		margin-left: auto
+		margin-top: auto
+
+
+.c-data
+	&__list
+		border: 1px solid #3C2F2B
+		padding: 32px
+	&__item
+		margin-bottom: 24px
+		&:last-of-type
+			margin-bottom: 0
+
+	&__name
+		font-size: 20px
+		line-height: 28px
+		margin-bottom: 8px
+	&__value
+		font-size: 32px
+		line-height: 32px
+		font-weight: 700
+		font-family: $bebas
+		u
+			font-weight: 400
+			font-size: 28px
+	&__desc
+		font-size: 14px
+		line-height: 20px
+		margin-top: 16px
+
+
+.noUi
+	&-target
+		background: #fff
+		border-radius: 0
+		box-shadow: none
+		border: none
+		height: 4px
+
+		.noUi
+			// &-base
+			&-connects
+				border-radius: 0
+
+			&-connect
+				background-color: $teracot
+			&-handle
+				width: 26px
+				height: 26px
+				background-color: #fff
+				border: 4px solid $teracot
+				border-radius: 50%
+				top: -9px
+				right: -14px
+				box-shadow: none
+				&:before, &:after
+					display: none
+
+
+.partners
+	&__title
+		margin-bottom: 64px
+	&__list
+		max-width: 1076px
+		grid: none / repeat(5, 1fr)
+		gap: 24px
+		margin-left: auto
+		margin-right: auto
+	&__item
+		display: flex
+		align-items: center
+		justify-content: center
+		height: 196px
+		padding: 15px
+		background-color: #fff
+
+
+.docs
+	.case
+		height: auto
+	&__inner
+		width: 100%
+	&__title
+		width: 100%
+		margin-bottom: 64px
+	&__controls
+		width: 100%
+		align-items: center
+		margin-bottom: 32px
+		.tabs__nav-item
+			white-space: nowrap
+	&__navs
+		margin-right: 64px
+		.tabs__nav.--white .tabs__nav-item.--current, .tabs__nav.--white .tabs__nav-item:hover
+			color: #fff
+			cursor: default
+	&__subtitle
+		font-size: 20px
+		line-height: 28px
+		margin-right: 64px
+	&__blocks
+		width: 100%
+		height: 445px
+		padding: 32px
+		overflow-y: auto
+		background-color: #fff
+	&__list
+		// overflow-y: auto
+	&__item
+		display: flex
+		margin-right: auto
+		color: $black
+		line-height: 24px
+		padding-top: 32px
+		padding-bottom: 32px
+		border-bottom: 1px solid #3C2F2B
+		&:first-of-type
+			padding-top: 0
+		&:last-of-type
+			padding-bottom: 0
+			border-bottom: none
+	&__name
+		padding-right: 15px
+		
+	&__size
+		margin-left: auto
+	&__size, &__type
+		color: #929292
+	&__size, &__type, &__link
+		white-space: nowrap
+	&__type
+		width: 93px
+		text-align: center
+	&__link
+		a
+			&:hover
+				color: $teracot
+		
+
+.footer
+	font-size: 14px
+	line-height: 28px
+	color: #97918F
+	&__inner
+		width: 100%
+		padding-top: 60px
+		padding-bottom: 65px
+		border-top: 1px solid #554C49
+	&__policy
+		margin-left: auto
+		a
+			color: #97918F
+			&:hover
+				color: #fff
+
+
+.modal
+	display: none
+	position: relative
+	background: #FFFFFF
+	width: 100%
+	box-shadow: 0px 16px 24px rgba(0, 0, 0, 0.15)
+	&.--olive
+		background-color: #F9F6F4
+	&.--xs
+		padding: 40px 32px 32px
+		max-width: 430px
+		.modal
+			&__close
+				top: 24px
+				right: 24px
+	&.--lg
+		max-width: 1296px
+		.modal
+			&__close
+				top: 37px
+				right: 37px
+	&__close
+		z-index: 5
+		position: absolute
+		cursor: pointer
+	&__title
+		margin-bottom: 8px
+	&__text
+		font-size: 16px
+		line-height: 24px
+		color: #979797
+		margin-bottom: 32px
+	&__field
+		margin-bottom: 14px
+	&__button
+		width: 100%
+
+	&__policy
+		font-size: 13px
+		line-height: 18px
+		color: #979797
+		margin-top: 54px
+		a
+			color: $teracot
+			&:hover
+				border-color: $teracot
+
+.thanks
+	&__title
+		margin-bottom: 16px
+	&__text
+		line-height: 24px
+		color: #979797
+
+.video
+	height: 740px
+
+
+.x
+	display: flex
+	align-items: center
+	justify-content: center
+	flex-direction: column
+	&.--xs
+		width: 18px
+		height: 18px
+		&:before, &:after
+			width: 18px
+			height: 2px
+		&:after
+			margin-top: -2px
+	&.--md
+		width: 25px
+		height: 25px
+		&:before, &:after
+			width: 25px
+			height: 3px
+		&:after
+			margin-top: -3px
+	&.--brown
+		&:before, &:after
+			background-color: #624C3B
+	&.--white
+		&:before, &:after
+			background-color: #fff
+	&:before, &:after
+		display: block
+		content: ''
+		transition: .3s
+		background-color: #3C2F2B
+	&:before
+		transform: rotate(45deg)
+	&:after
+		margin-top: -3px
+		transform: rotate(-45deg)
+	&:hover
+		&:before, &:after
+			background-color: $teracot

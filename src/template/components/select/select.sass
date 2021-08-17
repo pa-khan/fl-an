@@ -14,6 +14,7 @@
 	&__title
 		white-space: nowrap
 		text-overflow: ellipsis
+		transition: $t
 	&__icon
 		svg
 			transition: $t
@@ -29,44 +30,67 @@
 		border-top: none
 		transform: translateY(10px)
 		overflow-y: auto
+		color: $black
+		background-color: #fff
+		padding-top: 8px
+		margin-top: 24px
+		min-width: 200px
+		&:before
+			content: ''
+			position: absolute
+			top: -24px
+			left: 0
+			right: 0
+			height: 24px
 	&__item
+		position: relative
 		transition: $t
+		&:after
+			content: ''
+			position: absolute
+			bottom: 0
+			left: 16px
+			right: 16px
+			height: 1px
+			background-color: #EBEBEB
+		&.--selected, &:hover
+			color: $teracot
+
 		&.--hidden
 			display: none
+		&:last-of-type
+			&:after
+				display: none
 	&__parse
 		display: none
 
 	&.--md
 		.select
-			&__area
-				min-height: 50px
-				padding-left: 10px
-				padding-right: 10px
+			// &__area
+			&__title
+				font-size: 20px
+				line-height: 28px
+			&__icon
+				margin-left: 10px
+				
 			&__drop
-				max-height: 200px 
+				// max-height: 200px 
 			&__item
-				padding: 5px 10px
+				padding: 16px 24px
 
-	&.--b-gray
-		.select
-			&__area
-				border-radius: $radius
-				border-color: $c-lines
-			&__drop
-				border-radius: 0 0 $radius $radius
-				border-color: $c-lines
-				background-color: #fff
-			&__item
-				&.--selected
-					background-color: $c-lines
 	&.--open
 		z-index: 5
 		.select
 			&__area
 				border-radius: $radius $radius 0 0
+			&__title
+				color: $teracot
 			&__icon
 				svg
 					transform: rotate(180deg)
+				path
+					&[fill]
+						fill: $teracot
 			&__drop
 				opacity: 1
 				visibility: visible

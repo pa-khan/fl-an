@@ -1,0 +1,42 @@
+.tabs__navs .tabs__nav {
+  height: 0;
+  opacity: 0;
+  visibility: hidden;
+}
+.tabs__navs .tabs__nav.--current {
+  opacity: 1;
+  height: auto;
+  visibility: visible;
+}
+.tabs__nav {
+  margin-left: -16px;
+  margin-right: -16px;
+}
+.tabs__nav.--white .tabs__nav-item {
+  color: #fff;
+}
+.tabs__nav.--white .tabs__nav-item.--current, .tabs__nav.--white .tabs__nav-item:hover {
+  color: #D67C32;
+}
+.tabs__nav-title {
+  display: none;
+}
+.tabs__nav-item {
+  font-size: 20px;
+  line-height: 28px;
+  margin-left: 16px;
+  margin-right: 16px;
+}
+.tabs__item {
+  height: 0;
+  overflow: hidden;
+  transition: opacity 1s;
+  opacity: 0;
+  visibility: hidden;
+}
+.tabs__item.--current {
+  height: auto;
+  opacity: 1;
+  visibility: visible;
+  overflow: visible;
+}

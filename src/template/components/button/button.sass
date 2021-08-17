@@ -16,6 +16,10 @@
 	transition: .3s
 	outline: none
 	border-bottom: none
+	span + svg
+		position: relative
+		left: 0
+
 	&.--b-gray
 		border: 1px solid $c-lines
 		border-radius: $radius
@@ -38,19 +42,34 @@
 		min-height: 58px
 		padding-left: 28px
 		padding-right: 28px
+		font-weight: 600
+		font-size: 14px
+		text-transform: uppercase
+		letter-spacing: 0.02em
 		svg + span
 			margin-left: 10px
 		span + svg
 			margin-left: 10px
+		&:hover
+			svg
+				left: 5px
 	&.--lg
-		font-size: 20px
+		font-size: 14px
 		min-height: 180px
+		font-weight: 600
+		text-transform: uppercase
+		letter-spacing: 0.02em
 		svg + span
 			margin-left: 10px
 		span + svg
 			margin-left: 10px
+		&:hover
+			svg
+				left: 5px
 	&.--icon-box
 		flex-direction: column
+		padding-left: 0
+		padding-right: 0
 		.button
 			&__icon
 				display: flex
@@ -79,10 +98,11 @@
 			&:hover
 				.button
 					&__icon
-						border-color: darken($teracot, 5%)
+						border-color: $teracot
+						background-color: $teracot
 						path
 							&[fill]
-								fill: darken($teracot, 5%)
+								fill: #fff
 					
 	&.--bg-white
 		color: $teracot

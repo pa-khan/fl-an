@@ -15,6 +15,10 @@
   outline: none;
   border-bottom: none;
 }
+.button span + svg {
+  position: relative;
+  left: 0;
+}
 .button.--b-gray {
   border: 1px solid #eee;
   border-radius: 5px;
@@ -40,6 +44,10 @@
   min-height: 58px;
   padding-left: 28px;
   padding-right: 28px;
+  font-weight: 600;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
 }
 .button.--md svg + span {
   margin-left: 10px;
@@ -47,9 +55,15 @@
 .button.--md span + svg {
   margin-left: 10px;
 }
+.button.--md:hover svg {
+  left: 5px;
+}
 .button.--lg {
-  font-size: 20px;
+  font-size: 14px;
   min-height: 180px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
 }
 .button.--lg svg + span {
   margin-left: 10px;
@@ -57,8 +71,13 @@
 .button.--lg span + svg {
   margin-left: 10px;
 }
+.button.--lg:hover svg {
+  left: 5px;
+}
 .button.--icon-box {
   flex-direction: column;
+  padding-left: 0;
+  padding-right: 0;
 }
 .button.--icon-box .button__icon {
   display: flex;
@@ -86,10 +105,11 @@
   fill: #D67C32;
 }
 .button.--icon-box.--orange:hover .button__icon {
-  border-color: #c76f28;
+  border-color: #D67C32;
+  background-color: #D67C32;
 }
 .button.--icon-box.--orange:hover .button__icon path[fill] {
-  fill: #c76f28;
+  fill: #fff;
 }
 .button.--bg-white {
   color: #D67C32;

@@ -17,16 +17,22 @@ body.popup-show {
 }
 .popup__inner {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
   position: absolute;
-  flex-direction: column;
   overflow-y: auto;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   padding: 15px;
+}
+.popup__item.--show:nth-of-type(1) {
+  display: block;
+}
+.popup__item.--show:nth-of-type(1).--flex {
+  display: flex;
 }
 .popup__bg {
   position: absolute;

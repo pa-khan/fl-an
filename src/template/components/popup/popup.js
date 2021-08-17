@@ -10,17 +10,17 @@ class Popup {
     this.bg.className = 'popup__bg popup-close';
     Popup.inner = this.inner = document.createElement('div');
     this.inner.className = 'popup__inner';
-    Popup.list = this.list = document.createElement('div');
-    this.list.className = 'popup__list';
+    // Popup.list = this.list = document.createElement('div');
+    // this.list.className = 'popup__list';
     this.block.append(this.bg);
     this.block.append(this.inner);
-    this.inner.append(this.list);
+    // this.inner.append(this.list);
     document.body.append(this.block);
     Popup.items = this.items = [];
     this.initShowBtns();
     this.initCloseBtns();
     Popup.block.addEventListener('click', event => {
-      if (!event.target.closest('.popup__list')) {
+      if (!event.target.closest('.popup__item')) {
         Popup.close();
       }
     });
@@ -28,8 +28,9 @@ class Popup {
 
   initShowBtns() {
     document.addEventListener('DOMContentLoaded', () => {
-      this.showBtns = document.querySelectorAll('.popup-show, [data-popup]');
 
+      this.showBtns = document.querySelectorAll('.popup-show, [data-popup]');
+      
       if (this.showBtns) {
         this.showBtns.forEach(btn => {
           btn.addEventListener('click', event => {
@@ -37,6 +38,7 @@ class Popup {
             let btnSrc = btn.getAttribute('data-src'),
                 btnHref = btn.getAttribute('href'),
                 element = btnSrc ? btnSrc : btnHref;
+
 
             if (!element) {
               throw new Error('Not found attribute "data-src" or "href"');
@@ -79,11 +81,16 @@ class Popup {
   }
 
   static show(element) {
+
   	Popup.element = element;
+
   	Popup.element.classList.add(Popup.classItem);
+  	Popup.element.classList.add(Popup.classShow);
     this.block.classList.add(Popup.classShow);
     document.body.classList.add(Popup.classBodyShow);
-    this.list.prepend(element);
+    this.inner.prepend(Popup.element);
+
+    
   }
 
   static close() {

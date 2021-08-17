@@ -1,33 +1,42 @@
 include ../../pug/vars
 
 .modals
-	.modal.--xs#modal-order
-		.modal__close
-		.modal__title
-		.modal__text
-		.modal__form
-			.modal__field.filed.--md.--bg-white
-				.filed__wrap
-					input.filed__area(type="" name="")
-			.modal__field.filed.--md.--bg-white
-				.filed__wrap
-					input.filed__area(type="" name="")
-			button.modal__button.button.--md.--bg-orange
-		.modal__policy #[a(href="")]
+	.modal.--xs.--olive#modal-order
+		.modal__close.popup-close.x.--xs
+		.modal__title.h5 Оставить заявку
+		.modal__text Как принято считать, реплицированные с зарубежных источников, современные исследования, превозмогая
+		form.modal__form.form
+			.modal__field.field.--md.--bg-white.--b-gray.--title
+				.field__wrap
+					input.field__area(type="name" name="name")
+					.field__placeholder Имя
+				.field__message Не корректно заполнено поле
+			.modal__field.field.--md.--bg-white.--b-gray.--title.--phone.--required
+				.field__wrap
+					input.field__area(type="tel" name="phone")
+					.field__placeholder Телефон
+				.field__message Не корректно заполнено поле
+			button.modal__button.button.--md.--bg-orange отправить
+		.modal__policy Нажимая кнопку отправить, вы даете согласие на обработку #[a(href="uploads/privacy-policy.pdf" target="_blank") персональных данных]
 
-	.modal.--xs.thanks#modal-thanks
-		.thanks__title
-		.thanks__text
+	.modal.--xs.thanks.--olive#modal-thanks
+		.modal__close.popup-close.x.--xs
+		.thanks__title.h5 Спасибо за заявку
+		.thanks__text Как принято считать, реплицированны е с зарубежных источников, современные исследования, превозмогая
 
-	.modal.--lg.object#modal-object
-		.object__imgs.imgs
-			.imgs__wrap
-				.imgs__list
-					.imgs__item
-						img(src="" alt="")
-			.imgs__nav-item.button.arrows.--prev
-			.imgs__nav-item.button.arrows.--next
+	.modal.--lg.object.--flex#modal-object
+		.modal__close.popup-close.x.--md.--brown
 		.object__content
-			.object__title.h3
+			.object__title.h4
 			.object__text.t1
-			.object__button.button.--md.--bg-orange(href="" data-popup="") оставить заявку
+			.object__button.button.--md.--bg-orange(href="#modal-order" data-popup="")
+				span оставить заявку
+				<svg width="21" height="13" viewBox="0 0 21 13" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20.5303 7.03033C20.8232 6.73744 20.8232 6.26256 20.5303 5.96967L15.7574 1.1967C15.4645 0.903806 14.9896 0.903806 14.6967 1.1967C14.4038 1.48959 14.4038 1.96447 14.6967 2.25736L18.9393 6.5L14.6967 10.7426C14.4038 11.0355 14.4038 11.5104 14.6967 11.8033C14.9896 12.0962 15.4645 12.0962 15.7574 11.8033L20.5303 7.03033ZM0 7.25H20V5.75H0V7.25Z" fill="white"/></svg>
+
+	//- .modal.--lg#modal-video
+	//- 	.video
+	//- 		<iframe width="100%" height="100%" src="https://www.youtube.com/embed/lTRiuFIWV54" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+	//- .modal.--lg#modal-camera
+	//- 	.video
+	//- 		<iframe width="100%" height="100%" src="https://www.youtube.com/embed/5qap5aO4i9A" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
